@@ -1,35 +1,57 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
+    <title>Startseite</title>
 </head>
 <body>
-  <header>
-    <h1>Pomodoro Timer</h1>
-  </header>
-    <div id="pomodoro-app">
-        <div id="container">
-          <div id="timer">
-            <div id="time">
-              <span id="minutes">25</span>
-              <span id="colon">:</span>
-              <span id="seconds">00</span>
-            </div>
-            <div id="filler"></div>
-          </div>
-      
-          <div id="buttons">
-            <button id="work">Work</button>
-            <button id="shortBreak">Short Break</button>
-            <button id="longBreak">Long Break</button>
-            <button id="stop">Stop</button>
-          </div>
+    <header>
+        <h1>Study organizer</h1>
+    </header>
+    <main>
+        <div id="instructionText">
+            <p>This website was made for a school project. The website has two main functions at the moment.
+                 The first one is a Pomodoro Timer to keep track, how much you studied. It will show you when to take breaks, so you don't overwork yourself. 
+                 The second function is a to-do list. In this to-do list, you will be able to add, delete and cross out your tasks. </p>
         </div>
-      </div>
+        <div id="pomodoro-app">
+            <div id="container">
+              <div id="timer">
+                <div id="time">
+                  <span id="minutes">25</span>
+                  <span id="colon">:</span>
+                  <span id="seconds">00</span>
+                </div>
+                <div id="filler"></div>
+              </div>
+              <div id="buttons">
+                <button id="work">Work</button>
+                <button id="shortBreak">Short Break</button>
+                <button id="longBreak">Long Break</button>
+                <button id="stop">Stop</button>
+              </div>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div class="task-input">
+              <img src="bars-icon.svg" alt="icon">
+              <input type="text" placeholder="Add a new task">
+            </div>
+            <div class="controls">
+              <div class="filters">
+                <span class="active" id="all">All</span>
+                <span id="pending">Pending</span>
+                <span id="completed">Completed</span>
+              </div>
+              <button class="clear-btn">Clear All</button>
+            </div>
+            <ul class="task-box"></ul>
+          </div>
+    <footer>
+        
+    </footer>
 </body>
 </html>
