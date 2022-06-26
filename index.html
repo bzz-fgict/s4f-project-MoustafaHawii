@@ -1,57 +1,404 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Startseite</title>
+<title>S4F Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 100%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/w3images/coffeehouse.jpg");
+  min-height: 75%;
+}
+
+.menu {
+  display: none; 
+}
+#container{
+    border:1px grey;
+    border-radius :20px;
+    width:400px;
+    margin:20px auto;
+    padding:20px;
+    text-align:center;
+    background : grey;
+  }
+  
+  #timer{ 
+    color:#fcfafa; 
+    font-size:50px; 
+    margin:10px auto;
+    border : 5px solid #fcfafa;
+    border-radius:50%;
+    width:200px;
+    height:200px;
+    overflow:hidden;
+    position:relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+  }
+  
+  #time{
+    margin-top:70px;
+    z-index : 1;
+    position:relative;
+  }
+  
+  #filler{
+    background : #ddffcc;
+    height: 0px;
+    width: 200px;
+    position:absolute;
+    bottom:0;
+  }
+  
+  #buttons button { 
+    background:darkgrey; 
+    border:none; 
+    color:#fff; 
+    cursor:pointer; 
+    padding:5px; 
+    width:90px; 
+    margin:10px auto;
+    font-size:14px;
+    height : 50px;
+    border-radius : 50px;
+  }
+  
+  #buttons button#shortBreak{
+    background : darkgrey;
+  }
+  
+  #buttons button#longBreak{
+    background : darkgrey;
+  }
+  
+  #buttons button#stop{
+    background : red;
+  }
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+::selection{
+  color: #fff;
+  background: grey;
+}
+.wrapper{
+  max-width: 405px;
+  padding: 28px 0 30px;
+  margin: 137px auto;
+  background: #fff;
+  border-radius: 7px;
+  border-color: grey;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.task-input{
+  height: 52px;
+  padding: 0 25px;
+  position: relative;
+}
+.task-input img{
+  top: 50%;
+  position: absolute;
+  transform: translate(17px, -50%);
+}
+.task-input input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 20px 0 53px;
+  border: 1px solid #999;
+}
+.task-input input:focus,
+.task-input input.active{
+  padding-left: 52px;
+  border: 2px solid darkgray;
+}
+.task-input input::placeholder{
+  color: #bfbfbf;
+}
+.controls, li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.controls{
+  padding: 18px 25px;
+  border-bottom: 1px solid #ccc;
+}
+.filters span{
+  margin: 0 8px;
+  font-size: 17px;
+  color: #444444;
+  cursor: pointer;
+}
+.filters span:first-child{
+  margin-left: 0;
+}
+.filters span.active{
+  color: darkgray;
+}
+.controls .clear-btn{
+  border: none;
+  opacity: 0.6;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+  background: red;
+}
+.clear-btn.active{
+  opacity: 0.9;
+  pointer-events: auto;
+}
+.clear-btn:active{
+  transform: scale(0.93);
+}
+.task-box{
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 0 20px 10px 25px;
+}
+.task-box.overflow{
+  overflow-y: auto;
+  max-height: 300px;
+}
+.task-box::-webkit-scrollbar{
+  width: 5px;
+}
+.task-box::-webkit-scrollbar-track{
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+.task-box::-webkit-scrollbar-thumb{
+  background: #e6e6e6;
+  border-radius: 25px;
+}
+.task-box .task{
+  list-style: none;
+  font-size: 17px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+}
+.task-box .task:last-child{
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.task-box .task label{
+  display: flex;
+  align-items: flex-start;
+}
+.task label input{
+  margin-top: 7px;
+  accent-color: gray;
+}
+.task label p{
+  user-select: none;
+  margin-left: 12px;
+  word-wrap: break-word;
+}
+.task label p.checked{
+  text-decoration: line-through;
+}
+.task-box .settings{
+  position: relative;
+}
+.settings :where(i, li){
+  cursor: pointer;
+}
+.settings .task-menu{
+  z-index: 10;
+  right: -5px;
+  bottom: -65px;
+  padding: 5px 0;
+  background: #fff;
+  position: absolute;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: top right;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+.task-box .task:last-child .task-menu{
+  bottom: 0;
+  transform-origin: bottom right;
+}
+.task-box .task:first-child .task-menu{
+  bottom: -65px;
+  transform-origin: top right;
+}
+.task-menu.show{
+  transform: scale(1);
+}
+.task-menu li{
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 17px 15px;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+.task-menu li:last-child{
+  margin-bottom: 0;
+}
+.settings li:hover{
+  background: #f5f5f5;
+}
+.settings li i{
+  padding-right: 8px;
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Study organizer</h1>
-    </header>
-    <main>
-        <div id="instructionText">
-            <p>This website was made for a school project. The website has two main functions at the moment.
-                 The first one is a Pomodoro Timer to keep track, how much you studied. It will show you when to take breaks, so you don't overwork yourself. 
-                 The second function is a to-do list. In this to-do list, you will be able to add, delete and cross out your tasks. </p>
+
+<!-- Links (sit on top) -->
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="#" class="w3-button w3-block w3-black">HOME</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#about" class="w3-button w3-block w3-black">Timer</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#menu" class="w3-button w3-block w3-black">Todo List</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="#where" class="w3-button w3-block w3-black">Next steps</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+    <br><br><br>
+    <center><img src="tomatenBild.png" alt="tomatenBild"></center>
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Ein Projekt von Moustafa Hawi</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-black" style="font-size:90px">Pomodoro Timer &<br>Todo List</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-black">Kantonsschule Hottingen</span>
+  </div>
+</header>
+
+<!-- Add a background color and large text to the whole page -->
+
+<!-- About Container -->
+<div class="w3-container" id="about">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">Timer</span></h5>
+        <p>Das Grundprinzip der Pomodoro-Technik ist simpel: Phasen konzentrierter Arbeit wechseln sich ab mit regelmäßigen kurzen und längeren Pausen. So soll es möglich sein, produktiver zu arbeiten.
+            In einem Pomodoro – so nennt man die 25-minütigen Arbeitseinheiten – widmet man sich voll und ganz nur einer einzigen Aufgabe. Dieses Prinzip des Monotaskings ist ganz zentral für die Methode.</p>
+        <p><strong>Try it yourself:</strong></p>    
+    </div>
+    <div id="pomodoro-app">
+        <div id="container">
+          <div id="timer">
+            <div id="time">
+              <span id="minutes">25</span>
+              <span id="colon">:</span>
+              <span id="seconds">00</span>
+            </div>
+          <div id="filler"></div>
         </div>
-        <div id="pomodoro-app">
-            <div id="container">
-              <div id="timer">
-                <div id="time">
-                  <span id="minutes">25</span>
-                  <span id="colon">:</span>
-                  <span id="seconds">00</span>
-                </div>
-                <div id="filler"></div>
-              </div>
-              <div id="buttons">
-                <button id="work">Work</button>
-                <button id="shortBreak">Short Break</button>
-                <button id="longBreak">Long Break</button>
-                <button id="stop">Stop</button>
-              </div>
-            </div>
-          </div>
-          <div class="wrapper">
-            <div class="task-input">
-              <img src="bars-icon.svg" alt="icon">
-              <input type="text" placeholder="Add a new task">
-            </div>
-            <div class="controls">
-              <div class="filters">
-                <span class="active" id="all">All</span>
-                <span id="pending">Pending</span>
-                <span id="completed">Completed</span>
-              </div>
-              <button class="clear-btn">Clear All</button>
-            </div>
-            <ul class="task-box"></ul>
-          </div>
-    <footer>
         
-    </footer>
+        <div id="buttons">
+          <button id="work">Work</button>
+          <button id="shortBreak">Short Break</button>
+          <button id="longBreak">Long Break</button>
+          <button id="stop">Stop</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+<!-- Menu Container -->
+<div class="w3-container" id="menu">
+    <div class="w3-content" style="max-width:700px">
+      <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ToDo List</span></h5>
+          <p>Im Rahmen der Selbstorganisation kann sie von einzelnen Arbeitspersonen, für Arbeitsgruppen und Projekte aufgestellt werden. Der Liste ist nicht zu entnehmen, zu welchem Zeitpunkt der Status eines Arbeitsvorgangs geändert wurde, sondern nur der aktuelle Zustand. Sie bildet die Grundlage für ein Zeitmanagement.
+            Die To-do-Liste grenzt sich gegenüber der Checkliste darüber ab, dass bei der To-do-Liste i. d. R. verschiedene Aufgaben gesammelt werden, bei der Checkliste hingegen die Arbeitsschritte einer wiederkehrenden Aufgabe. </p>
+            <p><strong>Try it yourself:</strong></p>
+         </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="task-input">
+      <input type="text" placeholder="Add a new task">
+    </div>
+    <div class="controls">
+      <div class="filters">
+        <span class="active" id="all">All</span>
+        <span id="pending">Pending</span>
+        <span id="completed">Completed</span>
+      </div>
+      <button class="clear-btn">Clear All</button>
+    </div>
+    <ul class="task-box"></ul>
+  </div>
+  <script src="scriptTodo.js"></script>
+<!-- Contact/Area Container -->
+<div class="w3-container" id="where" style="padding-bottom:32px;">
+  <div class="w3-content" style="max-width:700px">
+    <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Next steps</span></h5>
+    <p>Diese Website wird sich mit der Zeit weiterentwickeln. Die nächsten Schritte wären Cookies und ein Belonungssystem in die Website zu integrieren. Stay tuned... ;)</p>
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Made by Moustafa Hawi (<a href="https://github.com/MoustafaHawii">Github</a>)</p>
+</footer>
+
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+}
+document.getElementById("myLink").click();
+</script>
+
 </body>
 </html>
